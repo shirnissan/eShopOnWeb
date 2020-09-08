@@ -5,6 +5,11 @@ pipeline {
   }
 	agent any
    stages {
+	         stage('Docker build') {
+         steps {
+            sh "pwd"
+         }
+      }
       stage('Docker build') {
          steps {
             sh "docker-compose build -t shirnissan/eshoponweb:${BUILD_NUMBER} ."
