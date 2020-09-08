@@ -5,7 +5,7 @@ pipeline {
   }
 	agent any
    stages {
-	         stage('Docker build') {
+	         stage('folder check') {
          steps {
             sh "pwd"
          }
