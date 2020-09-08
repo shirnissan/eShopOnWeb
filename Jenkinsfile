@@ -8,6 +8,7 @@ pipeline {
 	         stage('folder check') {
          steps {
             sh "pwd"
+	    sh "ls"
          }
       }
       stage('Docker build') {
