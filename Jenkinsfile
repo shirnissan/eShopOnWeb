@@ -12,10 +12,10 @@ pipeline {
       }
       stage('Login to docker hub') {
          steps {
-   script {
-          docker.withRegistry( '', registryCredential ) {
-          }         
-		}
+   		script {
+          		docker.withRegistry( '', registryCredential ) 
+         	}         
+	}
       }
       stage('Docker push') {
          steps {
