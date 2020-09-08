@@ -1,9 +1,9 @@
 pipeline {
   environment {
-    registry = "anishnath/mkdocs"
+    registry = "shirnissan/eshoponweb"
     registryCredential = 'docker-creds'
-    dockerImage = ''
   }
+	agent any
    stages {
       stage("Docker build") {
          steps {
