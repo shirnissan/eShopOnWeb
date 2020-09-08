@@ -5,24 +5,24 @@ pipeline {
   }
 	agent any
    stages {
-      stage("Docker build") {
+      stage('Docker build') {
          steps {
             sh "docker build -t shirnissan/eshoponweb:${BUILD_NUMBER} ."
          }
       }
-      stage("Login to docker hub") {
+      stage('Login to docker hub') {
          steps {
    script {
           docker.withRegistry( '', registryCredential ) {
           }         
 		}
       }
-      stage("Docker push") {
+      stage('Docker push') {
          steps {
            sh "docker push  shirnissan/eshoponweb:${BUILD_NUMBER}"
          }
       }
-      stage("Docker run ") {
+      stage('Docker run') {
          steps {
            sh " docker run -d -p 8080:80 --name myapp shirnissan/eshoponweb:${BUILD_NUMBER}"
          }
