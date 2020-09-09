@@ -1,4 +1,4 @@
-FROM FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build /app/src/Web/out ./
 WORKDIR /app/src/Web
