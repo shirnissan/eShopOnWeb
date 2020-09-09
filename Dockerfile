@@ -5,9 +5,6 @@ WORKDIR /source
 # copy all folder
 COPY . .
 
-# restore relevant nugets
-RUN dotnet restore
-
 # publish 
 RUN dotnet publish -c release -o /app --no-restore
 
