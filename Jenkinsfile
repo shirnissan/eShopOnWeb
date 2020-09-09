@@ -19,13 +19,13 @@ pipeline {
       stage('Docker build') {
          steps {
             sh "docker-compose up -d --build"
+	    sh "docker build -t shirnissan/eshoponweb:${BUILD_NUMBER} ."
+
          }
       }
       stage('Login to docker hub') {
          steps {
-   		script {
-          		docker.withRegistry( '', registryCredential ) 
-         	}         
+           sh "docker login --username=${env.DOCKERHUB_USER_NAME} --password=${env.DOCKERHUB_PASSWORD}"    
 	}
       }
       stage('Docker push') {
