@@ -5,16 +5,17 @@ pipeline {
   }
 	agent any
    stages {
-	 stage('Login to docker hub') {
-       	  steps {
-		sh "docker login --username=${env.DOCKERHUB_USER_NAME} --password=${env.DOCKERHUB_PASSWORD}"	
-	 }
-      }  stage('folder check') {
+	stage('folder check') {
          steps {
             sh "pwd"
 	    sh "ls"
          }
       }
+	 stage('Login to docker hub') {
+       	  steps {
+		sh "docker login --username=${env.DOCKERHUB_USER_NAME} --password=${env.DOCKERHUB_PASSWORD}"	
+	 }
+      }  
 	stage('Docker ps') {
           steps {
             sh "docker ps"
@@ -30,7 +31,6 @@ pipeline {
             sh "docker build -t shirnissan/eshoponweb:${BUILD_NUMBER} ."
          }
       }
-
       stage('Docker push') {
          steps {
            sh "docker push  shirnissan/eshoponweb:${BUILD_NUMBER}"
