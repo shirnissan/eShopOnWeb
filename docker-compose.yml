@@ -1,6 +1,10 @@
 version: '3.4'
 
 services:
+  app:
+    image: shirnissan/eshoponweb:${BUILD_NUMBER}
+    ports:
+          - 80:80
   eshopwebmvc:
     image: ${DOCKER_REGISTRY-}eshopwebmvc
     build:
