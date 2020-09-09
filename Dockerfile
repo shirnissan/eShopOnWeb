@@ -9,4 +9,5 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
 COPY --from=build /app/src/Web/out ./
+EXPOSE 8080
 ENTRYPOINT ["dotnet", "Web.dll"]
