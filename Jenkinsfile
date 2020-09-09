@@ -13,7 +13,7 @@ pipeline {
       }
 	stage('Docker ps') {
           steps {
-            sh "Docker ps"
+            sh "docker ps"
          }
       }
       stage('Docker build') {
