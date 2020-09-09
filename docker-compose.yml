@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   app:
+    build: /eShopOnWeb
     image: shirnissan/eshoponweb:${BUILD_NUMBER}
     ports:
           - 80:80
