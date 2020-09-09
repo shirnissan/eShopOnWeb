@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+FROM ${DOCKER_REGISTRY-}eshoppublicapi
 WORKDIR /app
 COPY . .
 EXPOSE 8080
