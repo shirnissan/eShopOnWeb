@@ -22,7 +22,7 @@ pipeline {
       }
       stage('Docker run') {
          steps {
-           sh " docker run -d -p 8080:80 shirnissan/eshoponweb:${BUILD_NUMBER}"
+           sh " docker run -d -p 8080:80 --name mywebapp shirnissan/eshoponweb:${BUILD_NUMBER}"
          }
       }
    } 
