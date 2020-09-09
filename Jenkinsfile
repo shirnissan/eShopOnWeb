@@ -28,8 +28,8 @@ pipeline {
       }
       stage('Login to docker hub') {
          steps {
-           sh "docker login --username=${DOCKERHUB_USER_NAME} --password=${DOCKERHUB_PASSWORD}"    
-	}
+		sh "docker login --username=${env.DOCKERHUB_USER_NAME} --password=${env.DOCKERHUB_PASSWORD}"	
+	 }
       }
       stage('Docker push') {
          steps {
