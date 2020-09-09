@@ -19,8 +19,6 @@ pipeline {
       stage('Docker build') {
          steps {
             sh "docker-compose up -d --build"
-	    sh "docker build -t shirnissan/eshoponweb:${BUILD_NUMBER} ."
-
          }
       }
       stage('Login to docker hub') {
