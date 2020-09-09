@@ -11,4 +11,7 @@ services:
     build:
       context: .
       dockerfile: src/PublicApi/Dockerfile
+  createimage:
+    build: .
+    image: shirnissan/eshoponweb:${BUILD_NUMBER}
 
