@@ -11,6 +11,11 @@ pipeline {
 	    sh "ls"
          }
       }
+	stage('Docker ps') {
+          steps {
+            sh "Docker ps"
+         }
+      }
       stage('Docker build') {
          steps {
             sh "docker-compose up -d --build"
