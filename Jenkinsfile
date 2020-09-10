@@ -34,8 +34,6 @@ pipeline {
 	    post {
         always {
             cleanWs deleteDirs: true, notFailBuild: true
-	    docker image rm mywebapp:$(BUILD_NUMBER)
         }
     }
-
 }
