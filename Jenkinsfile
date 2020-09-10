@@ -5,6 +5,11 @@ pipeline {
   }
 	agent any
    stages {
+	   stage('Docker ps') {
+          steps {
+            sh "docker ps"
+         }
+      }
       stage('Docker-compose build') {
          steps {
             sh "docker-compose up -d --build"
