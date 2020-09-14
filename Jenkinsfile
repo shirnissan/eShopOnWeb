@@ -41,7 +41,7 @@ pipeline {
 		}
 		stage('Terraform apply') {
 			steps {
-				sh "terraform apply eShop.tfplan"
+				sh "terraform apply --auto-approve"
 			}
 		}
 	}
