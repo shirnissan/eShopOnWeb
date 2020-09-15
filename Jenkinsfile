@@ -14,9 +14,14 @@ pipeline {
 				sh "docker ps"
 			}
 		}
-		stage('Docker-compose build') {
+		stage('Docker-compose build eshopwebmvc') {
 			steps {
-				sh "docker-compose up -d --build"
+				sh "docker-compose up -d --build eshopwebmvc:latest"
+			}
+		}
+		stage('Docker-compose build eshoppublicapi') {
+			steps {
+				sh "docker-compose up -d --build eshoppublicapi:latest"
 			}
 		}
 		stage('Login to docker hub') {
