@@ -3,7 +3,7 @@ pipeline {
 		terraform 'terraform-11'
 	}
   	environment {
-    		registry = "shirnissan/"
+    		DOCKER_REGISTRY = "shirnissan/"
     		registryCredential = 'docker-creds'
   	}
 	agent any
