@@ -5,7 +5,6 @@ pipeline {
   	environment {
     		registry = "shirnissan/eshoponweb"
     		registryCredential = 'docker-creds'
-		AWS_SECRET_ACCESS_KEY = credentials('awsCredentials')
   	}
 	agent any
    	stages {
