@@ -15,12 +15,12 @@ pipeline {
 		}
 		stage('Docker-compose build eshopwebmvc') {
 			steps {
-				sh "docker-compose up -d --build shirnissan/eshopwebmvc"
+				sh "docker-compose up -d --build ${DOCKER_REGISTRY}eshopwebmvc"
 			}
 		}
 		stage('Docker-compose build eshoppublicapi') {
 			steps {
-				sh "docker-compose up -d --build shirnissan/eshoppublicapi"
+				sh "docker-compose up -d --build ${DOCKER_REGISTRY}eshoppublicapi"
 			}
 		}
 		stage('Login to docker hub') {
