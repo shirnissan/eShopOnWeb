@@ -5,6 +5,7 @@ pipeline {
   	environment {
     		DOCKER_REGISTRY = "shirnissan/"
     		registryCredential = 'docker-creds'
+		IMAGE_TAG = "${BUILD_NUMBER}"
   	}
 	agent any
    	stages {
@@ -13,7 +14,7 @@ pipeline {
 				sh "docker ps"
 			}
 		}
-		stage('Docker-compose build eshopwebmvc') {
+		stage('Docker-compose build and tag eshopwebmvc') {
 			steps {
 				sh "docker-compose up -d --build eshopwebmvc"
 			}
