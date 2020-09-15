@@ -30,7 +30,8 @@ pipeline {
 		}
 		stage('Docker push') {
 			steps {
-				sh "docker push  shirnissan/eshoponweb:${BUILD_NUMBER}"
+				sh "docker push  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
+				sh "docker push  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
 			}
 		}
 		stage('Terraform init') {
