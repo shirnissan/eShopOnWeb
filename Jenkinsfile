@@ -1,7 +1,4 @@
 pipeline {
-	tools{
-		terraform 'terraform-11'
-	}
   	environment {
     		DOCKER_REGISTRY = "shirnissan/"
     		registryCredential = 'docker-creds'
@@ -33,21 +30,6 @@ pipeline {
 			steps {
 				sh "docker push  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
 				sh "docker push  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
-			}
-		}
-		stage('Terraform init') {
-			steps {
-				sh "terraform init"
-			}
-		}
-		stage('Terraform plan') {
-			steps {
-				sh "terraform plan -out eShop.tfplan"
-			}
-		}
-		stage('Terraform apply') {
-			steps {
-				sh "terraform apply --auto-approve"
 			}
 		}
 	}
