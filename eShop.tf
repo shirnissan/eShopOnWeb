@@ -76,6 +76,7 @@ resource "aws_subnet" "subnet1" {
   vpc_id                  = aws_vpc.vpc.id
   map_public_ip_on_launch = "true"
   availability_zone       = data.aws_availability_zones.available.names[0]
+  user_data = "${file("generate_agent.sh")}"
 
 }
 
@@ -84,7 +85,19 @@ resource "aws_subnet" "subnet2" {
   vpc_id                  = aws_vpc.vpc.id
   map_public_ip_on_launch = "true"
   availability_zone       = data.aws_availability_zones.available.names[1]
+  user_data = "${file("generate_agent.sh")}"
 
+}
+
+resource "tls_private_key" "this" {
+  algorithm = "RSA"
+}
+
+module "key_pair" {
+  source = "terraform-aws-modules/key-pair/aws"
+
+  key_name   = "deployer-one"
+  public_key = tls_private_key.this.public_key_openssh
 }
 
 # ROUTING #
@@ -187,7 +200,7 @@ resource "aws_instance" "nginx1" {
     type        = "ssh"
     host        = self.public_ip
     user        = "ec2-user"
-    private_key = file(var.private_key_path)
+    private_key = file(var.key_pair)
 
   }
 
@@ -210,7 +223,7 @@ resource "aws_instance" "nginx2" {
     type        = "ssh"
     host        = self.public_ip
     user        = "ec2-user"
-    private_key = file(var.private_key_path)
+    private_key = file(var.key_pair)
 
   }
 
