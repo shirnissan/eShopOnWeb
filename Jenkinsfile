@@ -4,7 +4,11 @@ pipeline {
     		registryCredential = 'docker-creds'
 		IMAGE_TAG = "${BUILD_NUMBER}"
   	}
-	agent any
+	agent {
+		node {
+			lable 'master'
+		}
+	}
    	stages {
 		// stage('Docker ps') {
 		// 	steps {
