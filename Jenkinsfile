@@ -50,8 +50,11 @@ stage('Docker ps') {
                             // Into each branch we put the pipeline code we want to execute
                             vms["node_" + nodeName] = {
                                 node(nodeName) {
-					sh "docker-compose up -d --build eshopwebmvc"
-					sh "docker-compose up -d --build eshoppublicapi"
+                                    	sh "docker pull  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
+					sh "docker pull  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
+
+					sh "docker run  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
+					sh "docker run  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
                                 }
                             }
                        // }
