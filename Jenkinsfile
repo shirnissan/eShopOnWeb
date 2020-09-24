@@ -46,14 +46,14 @@ pipeline {
                     def names =  nodeNames('TerraformVM')
                     for (int i=0; i<names.size(); ++i) {
                         def nodeName = names[i];
-                        if (nodeName != "master") {
+           		//if (nodeName != "master") {
                             // Into each branch we put the pipeline code we want to execute
                             vms["node_" + nodeName] = {
                                 node(nodeName) {
                                     echo "Triggering on " + nodeName
                                 }
                             }
-                        }
+                       // }
                     }   
                     // Now we trigger all vms
                     parallel vms
