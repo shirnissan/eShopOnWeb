@@ -43,7 +43,7 @@ pipeline {
                     // It uses Node and Label Parameter plugin to pass the job name to the payload job.
                     // The code will require approval of several Jenkins classes in the Script Security mode
                     def vms = [:]
-                    def names = nodeNames()
+                    def names =  nodeNames('TerraformVM')
                     for (int i=0; i<names.size(); ++i) {
                         def nodeName = names[i];
                         if (nodeName != "master") {
@@ -76,6 +76,6 @@ pipeline {
 
 // This method collects a list of Node names from the current Jenkins instance
 @NonCPS
-def nodeNames() {
-  return jenkins.model.Jenkins.instance.nodes.collect { node -> node.name }
+def nodeNames(string labelToSelect) {
+  return jenkins.model.Jenkins.instance.nodes.collect { node -> node.getLabelString().contains(labelToSelect) ? node.name : null }
 }
