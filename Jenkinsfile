@@ -10,32 +10,32 @@ pipeline {
 		}
 	}
    	stages {
-		// stage('Docker ps') {
-		// 	steps {
-		// 		sh "docker ps"
-		// 	}
-		// }
-		// stage('Docker-compose build and tag eshopwebmvc') {
-		// 	steps {
-		// 		sh "docker-compose up -d --build eshopwebmvc"
-		// 	}
-		// }
-		// stage('Docker-compose build eshoppublicapi') {
-		// 	steps {
-		// 		sh "docker-compose up -d --build eshoppublicapi"
-		// 	}
-		// }
-		// stage('Login to docker hub') {
-		// 	steps {
-		// 		sh "docker login --username=${env.DOCKERHUB_USER_NAME} --password=${env.DOCKERHUB_PASSWORD}"
-		// 	}
-		// }
-		// stage('Docker push') {
-		// 	steps {
-		// 		sh "docker push  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
-		// 		sh "docker push  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
-		// 	}
-		// }
+stage('Docker ps') {
+			steps {
+				sh "docker ps"
+			}
+		}
+		stage('Docker-compose build and tag eshopwebmvc') {
+			steps {
+				sh "docker-compose up -d --build eshopwebmvc"
+			}
+		}
+		stage('Docker-compose build eshoppublicapi') {
+			steps {
+				sh "docker-compose up -d --build eshoppublicapi"
+			}
+		}
+		stage('Login to docker hub') {
+			steps {
+				sh "docker login --username=${env.DOCKERHUB_USER_NAME} --password=${env.DOCKERHUB_PASSWORD}"
+			}
+		}
+		stage('Docker push') {
+			steps {
+				sh "docker push  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
+				sh "docker push  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
+			}
+		}
 		stage('Docker run'){
 			steps{
 				script{
@@ -50,7 +50,11 @@ pipeline {
                             // Into each branch we put the pipeline code we want to execute
                             vms["node_" + nodeName] = {
                                 node(nodeName) {
-                                    echo "Triggering on " + nodeName
+                                    	sh "docker pull  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
+					sh "docker pull  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
+					
+					sh "docker run  shirnissan/eshopwebmvc:${BUILD_NUMBER}"
+					sh "docker run  shirnissan/eshoppublicapi:${BUILD_NUMBER}"
                                 }
                             }
                        // }
