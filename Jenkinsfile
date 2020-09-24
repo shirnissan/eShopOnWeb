@@ -76,6 +76,6 @@ pipeline {
 
 // This method collects a list of Node names from the current Jenkins instance
 @NonCPS
-def nodeNames(string labelToSelect) {
+def nodeNames(def labelToSelect) {
   return jenkins.model.Jenkins.instance.nodes.collect { node -> node.getLabelString().contains(labelToSelect) ? node.name : null }
 }
